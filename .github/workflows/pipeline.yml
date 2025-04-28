@@ -60,7 +60,7 @@ jobs:
           maxHigh: 10
           maxMedium: 10
           maxLow: 15
-          cc_region: us-west-2
+          cc_region: trend-us-1
           templatesDirPath: templates/aws
           cc_output_results: true
       - name: 'Upload Scan Result Artifact'
