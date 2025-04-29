@@ -115,18 +115,11 @@ jobs:
       run: |
         if ! docker image inspect 780477232234.dkr.ecr.ap-southeast-2.amazonaws.com/frontend:latest > /dev/null 2>&1; then
         echo "Docker image does not exist. Exiting."
-        exit 1
         fi
-        env:
-        AWS_ACCOUNT_ID: ${{ env.AWS_ACCOUNT_ID }}
-        AWS_REGION: ${{ env.AWS_REGION }}
     - name: Login to Amazon ECR
       run: |
         aws ecr get-login-password --region $AWS_REGION \
         | docker login --username AWS --password-stdin 780477232234.dkr.ecr.ap-southeast-2.amazonaws.com
-        env:
-        AWS_ACCOUNT_ID: ${{ env.AWS_ACCOUNT_ID }}
-        AWS_REGION: ${{ env.AWS_REGION }}
     - name: Push to ECR
       run: docker push ${{secrets.ECR}}/${{ env.FRONTEND_CONTAINER_NAME }}:${{ env.RELEASE }}
   Backend:
