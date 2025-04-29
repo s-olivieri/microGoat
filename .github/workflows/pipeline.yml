@@ -92,13 +92,16 @@ jobs:
         export TMAS_API_KEY=${{ secrets.V1_API_KEY }}
         docker save ${{ env.FRONTEND_CONTAINER_NAME }}:${{ env.RELEASE }} > image.tar
         tmas scan docker-archive:image.tar --malware --saveSBOM > result.json
-       
     - name: 'Upload Scan Result Artifact'
       uses: actions/upload-artifact@v4
       with:
         name: container-scan-result-${{ env.FRONTEND_CONTAINER_NAME }}
         path: scripts/result.json
         retention-days: 30
+    - name: Check if SBOM file exists
+      run: |
+        ls -la scripts
+        cat scripts/SBOM.json || echo "SBOM.json does not exist"
     - name: 'Upload SBOM Artifact'
       uses: actions/upload-artifact@v4
       with:
