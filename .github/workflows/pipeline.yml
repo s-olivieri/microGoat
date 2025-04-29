@@ -64,7 +64,7 @@ jobs:
           templatesDirPath: templates/aws
           cc_output_results: true
       - name: 'Upload Scan Result Artifact'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: template-scan-result
           path: results.json
@@ -94,13 +94,13 @@ jobs:
         tmas scan docker-archive:image.tar --malware --saveSBOM > result.json
        
     - name: 'Upload Scan Result Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: container-scan-result-${{ env.FRONTEND_CONTAINER_NAME }}
         path: scripts/result.json
         retention-days: 30
     - name: 'Upload SBOM Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: sbom-${{ env.FRONTEND_CONTAINER_NAME }}
         path: scripts/SBOM.json
@@ -134,13 +134,13 @@ jobs:
         tmas scan docker-archive:image.tar --malware --saveSBOM > result.json
         
     - name: 'Upload Scan Result Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: container-scan-result-${{ env.BACKEND_CONTAINER_NAME }}
         path: scripts/result.json
         retention-days: 30
     - name: 'Upload SBOM Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: sbom-${{ env.BACKEND_CONTAINER_NAME }}
         path: scripts/SBOM.json
@@ -174,13 +174,13 @@ jobs:
         tmas scan docker-archive:image.tar --malware --saveSBOM > result.json
         
     - name: 'Upload Scan Result Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: container-scan-result-${{ env.TERMINAL_CONTAINER_NAME }}
         path: scripts/result.json
         retention-days: 30
     - name: 'Upload SBOM Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: sbom-${{ env.TERMINAL_CONTAINER_NAME }}
         path: scripts/SBOM.json
@@ -214,13 +214,13 @@ jobs:
         tmas scan docker-archive:image.tar --malware --saveSBOM > result.json
         
     - name: 'Upload Scan Result Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: container-scan-result-${{ env.LAZYMODE_CONTAINER_NAME }}
         path: scripts/result.json
         retention-days: 30
     - name: 'Upload SBOM Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: sbom-${{ env.LAZYMODE_CONTAINER_NAME }}
         path: scripts/SBOM.json
@@ -254,13 +254,13 @@ jobs:
         tmas scan docker-archive:image.tar --malware --saveSBOM > result.json
         
     - name: 'Upload Scan Result Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: container-scan-result-${{ env.ORDERS_CONTAINER_NAME }}
         path: scripts/result.json
         retention-days: 30
     - name: 'Upload SBOM Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: sbom-${{ env.ORDERS_CONTAINER_NAME }}
         path: scripts/SBOM.json
