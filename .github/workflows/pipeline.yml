@@ -110,6 +110,17 @@ jobs:
         retention-days: 30
     - name: Tag the Docker Image
       run: docker tag ${{ env.FRONTEND_CONTAINER_NAME }}:${{ env.RELEASE }} ${{secrets.ECR}}/${{ env.FRONTEND_CONTAINER_NAME }}:${{ env.RELEASE }}
+
+    - name: Check if Docker image exists
+      run: |
+        if ! docker image inspect ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/frontend:latest > /dev/null 2>&1; then
+        echo "Docker image does not exist. Exiting."
+        exit 1
+        fi
+    - name: Login to Amazon ECR
+      run: |
+        aws ecr get-login-password --region ${{ env.AWS_REGION }} \
+        | docker login --username AWS --password-stdin ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
     - name: Push to ECR
       run: docker push ${{secrets.ECR}}/${{ env.FRONTEND_CONTAINER_NAME }}:${{ env.RELEASE }}
   Backend:
